@@ -1,0 +1,75 @@
+Feb-13 14:55:56.478 [main] DEBUG nextflow.cli.Launcher - $> nextflow main.nf
+Feb-13 14:55:56.742 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 21.10.6
+Feb-13 14:55:56.811 [main] INFO  nextflow.cli.CmdRun - Launching `main.nf` [evil_lumiere] - revision: 8b7296ccfe
+Feb-13 14:55:56.850 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/modules/9_sqanti_protein/nextflow.config
+Feb-13 14:55:56.851 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/modules/9_sqanti_protein/nextflow.config
+Feb-13 14:55:56.897 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Feb-13 14:55:58.992 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/home/tabear/.nextflow/plugins
+Feb-13 14:55:58.996 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Feb-13 14:55:59.031 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Feb-13 14:55:59.034 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Feb-13 14:55:59.045 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Feb-13 14:55:59.075 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Feb-13 14:55:59.236 [main] DEBUG nextflow.Session - Session uuid: 476133a7-2a2d-47df-8ad3-9cb7c79f3cc1
+Feb-13 14:55:59.236 [main] DEBUG nextflow.Session - Run name: evil_lumiere
+Feb-13 14:55:59.238 [main] DEBUG nextflow.Session - Executor pool size: 80
+Feb-13 14:55:59.282 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 21.10.6 build 5660
+  Created: 21-12-2021 16:55 UTC (17:55 CEST)
+  System: Linux 5.15.0-48-generic
+  Runtime: Groovy 3.0.9 on OpenJDK 64-Bit Server VM 1.8.0_332-b09
+  Encoding: UTF-8 (UTF-8)
+  Process: 584860@noggo [10.3.3.5]
+  CPUs: 80 - Mem: 2 TB (7.3 GB) - Swap: 2.6 GB (1.4 GB)
+Feb-13 14:55:59.402 [main] DEBUG nextflow.Session - Work-dir: /mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/modules/9_sqanti_protein/work [nfs]
+Feb-13 14:55:59.403 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/modules/9_sqanti_protein/bin
+Feb-13 14:55:59.430 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Feb-13 14:55:59.461 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Feb-13 14:55:59.604 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 81; maxThreads: 1000
+Feb-13 14:55:59.883 [main] DEBUG nextflow.Session - Session start invoked
+Feb-13 14:56:00.955 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Feb-13 14:56:01.178 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Feb-13 14:56:01.178 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Feb-13 14:56:01.187 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Feb-13 14:56:01.196 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=80; memory=2 TB; capacity=80; pollInterval=100ms; dumpInterval=5m
+Feb-13 14:56:01.230 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 81; maxThreads: 1000
+Feb-13 14:56:01.366 [main] DEBUG nextflow.Session - Workflow process names [dsl1]: sqanti_protein
+Feb-13 14:56:01.367 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Feb-13 14:56:01.367 [main] DEBUG nextflow.Session - Session await
+Feb-13 14:56:01.547 [Actor Thread 3] DEBUG nextflow.util.CacheHelper - Unable to get file attributes file: /Users/tabea/mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/results/8_rename_cds_to_exon/hnr_50.transcript_exons_only.gtf -- Cause: java.nio.file.NoSuchFileException: /Users/tabea/mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/results/8_rename_cds_to_exon/hnr_50.transcript_exons_only.gtf
+Feb-13 14:56:01.548 [Actor Thread 3] DEBUG nextflow.util.CacheHelper - Unable to get file attributes file: /Users/tabea/mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/results/8_rename_cds_to_exon/hnr_50.cds_renamed_exon.gtf -- Cause: java.nio.file.NoSuchFileException: /Users/tabea/mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/results/8_rename_cds_to_exon/hnr_50.cds_renamed_exon.gtf
+Feb-13 14:56:01.548 [Actor Thread 3] DEBUG nextflow.util.CacheHelper - Unable to get file attributes file: /Users/tabea/mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/results/8_rename_cds_to_exon/gencode.transcript_exons_only.gtf -- Cause: java.nio.file.NoSuchFileException: /Users/tabea/mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/results/8_rename_cds_to_exon/gencode.transcript_exons_only.gtf
+Feb-13 14:56:01.549 [Actor Thread 3] DEBUG nextflow.util.CacheHelper - Unable to get file attributes file: /Users/tabea/mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/results/8_rename_cds_to_exon/gencode.cds_renamed_exon.gtf -- Cause: java.nio.file.NoSuchFileException: /Users/tabea/mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/results/8_rename_cds_to_exon/gencode.cds_renamed_exon.gtf
+Feb-13 14:56:01.549 [Actor Thread 3] DEBUG nextflow.util.CacheHelper - Unable to get file attributes file: /Users/tabea/mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/results/5_orf_calling/hnr_best_orf_without_stop.tsv -- Cause: java.nio.file.NoSuchFileException: /Users/tabea/mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/results/5_orf_calling/hnr_best_orf_without_stop.tsv
+Feb-13 14:56:01.669 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Feb-13 14:56:01.682 [Task submitter] INFO  nextflow.Session - [18/6b111e] Submitted process > sqanti_protein
+Feb-13 14:56:02.323 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: sqanti_protein; status: COMPLETED; exit: 1; error: -; workDir: /mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/modules/9_sqanti_protein/work/18/6b111ef001145b8abfa2bb370bf24c]
+Feb-13 14:56:02.406 [Task monitor] ERROR nextflow.processor.TaskProcessor - Error executing process > 'sqanti_protein'
+
+Caused by:
+  Process `sqanti_protein` terminated with an error exit status (1)
+
+Command executed:
+
+  sqanti3_protein.py     hnr_50.transcript_exons_only.gtf     hnr_50.cds_renamed_exon.gtf     hnr_best_orf_without_stop.tsv     gencode.transcript_exons_only.gtf     gencode.cds_renamed_exon.gtf     -d ./     -p hnr_50
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  /bin/bash: line 0: cd: /mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/modules/9_sqanti_protein/work/18/6b111ef001145b8abfa2bb370bf24c: No such file or directory
+  /bin/bash: .command.sh: No such file or directory
+
+Work dir:
+  /mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/modules/9_sqanti_protein/work/18/6b111ef001145b8abfa2bb370bf24c
+
+Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`
+Feb-13 14:56:02.426 [main] DEBUG nextflow.Session - Session await > all process finished
+Feb-13 14:56:02.429 [Task monitor] DEBUG nextflow.Session - Session aborted -- Cause: Process `sqanti_protein` terminated with an error exit status (1)
+Feb-13 14:56:02.495 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Feb-13 14:56:02.517 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=1; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=0ms; failedDuration=597ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=1; peakMemory=0; ]
+Feb-13 14:56:02.682 [main] DEBUG nextflow.CacheDB - Closing CacheDB done
+Feb-13 14:56:02.730 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
