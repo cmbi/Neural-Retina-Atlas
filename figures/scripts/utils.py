@@ -3,10 +3,8 @@ from matplotlib_venn import venn2, venn3, venn3_circles
 import numpy as np
 import mygene
 import pandas as pd
+from pyteomics.parser import cleave
 
-def absolute_value(val):
-    a  = np.round(val/100.*isoforms.protein_coding.value_counts().sum())
-    return int(a)
 
 
 def ird_gene_list():
@@ -65,4 +63,35 @@ def overlap3(data, title, name1, name2, name3, size = (10,10), colors = ('black'
                     len(sample13.index), len(sample23.index), len(sample123.index)), 
                     set_labels = (name1, name2, name3), 
                     set_colors = colors)
-    plt.savefig(f'figures/{title}.svg',  bbox_inches='tight', dpi = 300)
+    plt.savefig(f'plots/{title}.svg',  bbox_inches='tight', dpi = 300)
+    plt.show()
+
+    #make peptide pie chart
+def digest(protein_sequence, enzyme):
+    '''digests the protein sequences
+    '''
+    if enzyme == 'trypsin':
+        seq_cut = cleave(protein_sequence, rule='[KR]', min_length=7, missed_cleavages=2)
+        plist=set() #to prevent duplicates
+
+    elif enzyme == 'chymotrypsin':
+        seq_cut = cleave(protein_sequence, rule='[FLWY]', min_length=7, missed_cleavages=2)
+        plist=set() #to prevent duplicates
+
+    elif enzyme == 'aspnlysc':
+        seq_cut = cleave(protein_sequence, rule='[DK]', min_length=7, missed_cleavages=2)
+        plist=set() #to prevent duplicates
+
+    else:
+        print('enzyme must be trypsin, chymotrypsin or aspnlysc')
+
+    for peptide in seq_cut:
+        if peptide in plist or len(peptide) < 7 or len(peptide) > 50:
+            continue
+        plist.add(peptide)
+    return(plist)
+
+def refine_source(sources):
+    if len(set(sources))==1:
+        return(sources[0])
+    return('Multi-mapping')
