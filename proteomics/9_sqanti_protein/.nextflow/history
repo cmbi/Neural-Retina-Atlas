@@ -1,0 +1,14 @@
+2023-01-31 10:48:03	7.6s	pedantic_venter	ERR	8b7296ccfee4f6a331610e333654fabc	d8c00117-2e57-4309-94a7-cb69cca4c19e	nextflow main.nf
+2023-01-31 10:49:54	1h 13m 51s	clever_jennings	OK	8b7296ccfee4f6a331610e333654fabc	26868529-d726-4980-94ea-11c726b32cbb	nextflow main.nf
+2023-02-01 13:19:21	3.9s	special_volhard	ERR	8b7296ccfee4f6a331610e333654fabc	afa5e143-b440-4d8b-ada0-ee402c5c2f03	nextflow main.nf
+2023-02-01 13:21:40	3.2s	berserk_wozniak	ERR	8b7296ccfee4f6a331610e333654fabc	d5802e32-021f-4ad1-883a-860cb3815c41	nextflow main.nf
+2023-02-01 13:25:50	7.8s	desperate_carson	ERR	8b7296ccfee4f6a331610e333654fabc	8a8c9c7b-070d-482e-b338-332318d330c7	nextflow main.nf
+2023-02-01 13:27:41	10m 37s	elated_joliot	ERR	8b7296ccfee4f6a331610e333654fabc	dbdc1921-bd9d-4f14-abc8-4698a13d827f	nextflow main.nf
+2023-02-01 13:38:53	18m 49s	thirsty_dubinsky	OK	8b7296ccfee4f6a331610e333654fabc	b859a83b-6d87-4e8b-9b27-862eb4581005	nextflow main.nf
+2023-02-01 14:44:22	44m 44s	scruffy_venter	OK	8b7296ccfee4f6a331610e333654fabc	682d437f-c328-4ff9-bb0e-0619311d872f	nextflow main.nf
+2023-02-13 14:44:07	2.8s	jolly_shirley	ERR	8b7296ccfee4f6a331610e333654fabc	071b75c1-46c8-4283-9f79-bcea92968f1d	nextflow main.nf
+2023-02-13 14:49:12	1.4s	ecstatic_varahamihira	ERR	8b7296ccfee4f6a331610e333654fabc	f0e3ad50-d46a-449e-8234-acd926a9e898	nextflow main.nf
+2023-02-13 14:51:51	3.1s	scruffy_lamport	ERR	8b7296ccfee4f6a331610e333654fabc	55261fe8-1eb3-4a4d-8671-030967f766a2	nextflow main.nf
+2023-02-13 14:53:33	38s	exotic_tesla	ERR	8b7296ccfee4f6a331610e333654fabc	5c907635-5f3a-41c6-bddb-685db4719b8b	nextflow main.nf
+2023-02-13 14:55:59	3.7s	evil_lumiere	ERR	8b7296ccfee4f6a331610e333654fabc	476133a7-2a2d-47df-8ad3-9cb7c79f3cc1	nextflow main.nf
+2023-02-13 14:57:32	3.6s	drunk_stallman	ERR	8b7296ccfee4f6a331610e333654fabc	7f9abda8-3aea-4dff-b8c1-e0b41874fdff	nextflow main.nf
