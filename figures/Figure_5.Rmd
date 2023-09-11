@@ -1,0 +1,187 @@
+---
+title: "Visualization of novel peptides for AMPH"
+output: html_notebook
+---
+# Install packages
+```{r}
+#install_github("pjvolders/PJsTools")
+#install.packages("devtools")
+#if (!require("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager")
+#BiocManager::install("Gviz")
+#install.packages("svglite")
+```
+
+# Import packages
+```{r}
+library(tidyverse)
+library(Gviz)
+library(biomaRt)
+library(glue)
+library(ggtranscript)
+library('GenomicFeatures')
+library('rtracklayer')
+library(devtools)
+library(svglite)
+
+# Load functions from utils
+source("scripts/utils.R") 
+```
+
+# Define the gene of interest
+```{r}
+gene = 'TPM3' #'AMPH' 'TPM3' 'EPB41L2'
+```
+
+
+
+# Define the parameters for the gene of interest
+```{r}
+if (gene == 'AMPH') {
+  thechr <- 'chr7'
+  st <- 38426000
+  en <- 38430000
+  gene_id <- 'ENSG00000078053.17'
+  nanopore_transcripts <- c("TCONS_00001274_ORF_1", "TCONS_00001290_ORF_1" )
+  min_strand <- TRUE
+} else if (gene == 'TPM3'){
+  thechr <- "chr1"
+  st <- 154150000
+  en <- 154170000
+  gene_id <- 'ENSG00000143549.21'
+  nanopore_transcripts <- c("TCONS_00000092_ORF_1" )
+  min_strand <- TRUE
+} else if (gene == 'EPB41L2'){
+  thechr <- "chr6"
+  st <- 130867000
+  en <- 130875000
+  gene_id <- 'ENSG00000079819.19'
+  nanopore_transcripts <- c("TCONS_00001216_ORF_1" )
+  min_strand <- TRUE
+}
+
+theGeneome <- "hg38"
+options(ucscChromosomeNames=FALSE)
+ref_transcripts <- c('ENST00000356264.7', 'ENST00000651641.1', 'ENST00000337057.8')
+```
+
+
+```{r}
+# Files for isoquant
+isoquant_gtf = 'data/proteomics/hnr_50_with_cds_filtered.gtf'
+out_path = paste('data/proteomics/', gene, '.gtf', sep='')
+# Add UTR to the gtf file
+combined_cds_utr_gtffile(gene, isoquant_gtf, out_path)
+```
+
+# Create the Isoquant transcript track
+```{r}
+isoquant_path = paste('data/proteomics/', gene, '.gtf', sep="")
+rnaatlasTrack <- GeneRegionTrack(isoquant_path, chromosome = thechr, genome = theGeneome, name = "PacBio", col="NA", 
+                                 fill= "#E76F51",  background.title = "darkgrey", col="NA", transcriptAnnotation="transcript")
+
+# Add the gene region track to the gviz object)
+rnaatlasTrack <- rnaatlasTrack[feature(rnaatlasTrack) %in% c("CDS", "UTR")]
+rnaatlasTrack@dp@pars$just.group <- "left"
+
+```
+
+# Create the gencode transcript track
+```{r}
+gencode_path = paste('data/proteomics/', gene, '_gencode.gtf', sep="")
+
+# using the rtracklayer import function I can read the GFF3 from GenCode and create conversion table between gene id and gene symbol
+gtf <- import(gencode_path, format = "gtf")
+gtf <- as(gtf, "GRanges")
+transcript2id <- mcols(gtf)[,c("transcript_name","transcript_id")]
+transcript2id <- unique(transcript2id)
+transcript2id <- na.omit(transcript2id)
+rownames(transcript2id) <- transcript2id$transcript_name
+
+gencode <- GeneRegionTrack(gencode_path, chromosome=thechr, genome = theGeneome,name = 'GENCODE', col="NA", 
+                           fill="#07004D", collapseTranscripts = FALSE,  background.title = "darkgrey", showId = TRUE, transcriptAnnotation = "transcript", geneSymbol = TRUE)
+
+ranges(gencode)$transcript <- transcript2id[ranges(gencode)$transcript, "transcript_id"]
+gencode <- gencode[gene(gencode) == gene_id & feature(gencode) %in% c("CDS", "UTR")]
+```
+
+# Create the peptide track
+```{r}
+pep_gtf <- paste('data/proteomics/', gene, '_peptides.gtf', sep="")
+  
+peptides_gtf <- GeneRegionTrack(pep_gtf, chromosome=thechr, genome = theGeneome, name = 'Peptides', 
+                                 fill="#FFB400", collapseTranscripts = FALSE,  background.title = "darkgrey", col="NA", transcriptAnnotation="transcript")
+peptides_gtf <- peptides_gtf[feature(peptides_gtf) %in% c("CDS")]
+```
+
+# Create a track for the Nanopore data
+```{r}
+nanopore <- GeneRegionTrack("data/proteomics/ont.gtf", 
+                             chromosome=thechr, genome = theGeneome,name = 'Nanopore', start=st, end=en,
+                             fill="#567568",background.title = "darkgrey", col="NA", transcriptAnnotation="transcript")
+nanopore <- nanopore[feature(nanopore) %in% c("exon")]
+```
+
+# Create the plot
+```{r}
+
+# Define the ideogram and genome axis track of the figure
+gtrack <- GenomeAxisTrack()
+picture_path= paste('plots/novel_peptides_', gene, '_nanopore.svg', sep='')
+
+svglite(filename = picture_path,
+   width     = 4.25,
+   height    = 2.5,
+   pointsize = 10
+   )
+# Filter the Nanopore track for transcripts that contain the novel peptides
+nanopore <- nanopore[transcript(nanopore) %in% nanopore_transcripts]
+
+# Filter additional tracks for EPB41L2
+if (gene == 'EPB41L2') {
+  rnaatlasTrack <- rnaatlasTrack[transcript(rnaatlasTrack) %in% c("TRANSCRIPT22463.CHR6.NNIC","TRANSCRIPT22489.CHR6.NIC","TRANSCRIPT22511.CHR6.NIC")]
+  gencode <- gencode[transcript(gencode) %in% c("ENST00000530481.5","ENST00000337057.8","ENST00000628542.2","ENST00000530757.5","ENST00000368128.6","ENST00000527411.5", "ENST00000524581.5","ENST00000527659.5","ENST00000529208.5","ENST00000527017.6","ENST00000527423.5","ENST00000456097.6", "ENST00000525198.1")]
+}
+
+
+# Create the plot
+plotTracks(
+  list(gencode, rnaatlasTrack, nanopore, peptides_gtf,gtrack),
+  from = st, to = en, chromosome = thechr, thinBoxFeature="UTR", collapse= TRUE, reverseStrand = min_strand,
+  cex = 1.2,cex.title = 0.9, title.width = 3, rot.title = 0
+)
+dev.off()
+```
+# Create the GENCDOE reference transcript plot on top of the figure
+```{r}
+gencode_ref_transcript <- gencode[transcript(gencode) %in% ref_transcripts]
+gencode_ref_transcript
+
+picture_path= paste('plots/novel_peptides_', gene, '_ref_transcript.svg', sep='')
+
+svglite(filename = picture_path,
+   width     = 5,
+   height    = 0.5,
+   pointsize = 10
+   )
+
+if (gene == 'AMPH'){
+  start = 38383704
+  end = 38631373
+}else if (gene == 'TPM3'){
+  start = 154161813
+  end = 154192100
+}else if (gene == 'EPB41L2'){
+  start = 130839347
+  end = 131063322
+}
+
+plotTracks(
+  list(gencode_ref_transcript),
+  from = start, to = end, chromosome = thechr, thinBoxFeature="UTR",reverseStrand = TRUE
+)
+
+dev.off()
+```
+
+
