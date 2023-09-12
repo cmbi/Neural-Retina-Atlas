@@ -10,6 +10,6 @@ THe processed data is available as UCSC genome browser track (link) and as visua
 ## Scripts
 
 - [Figures and Tables](figures_and_tables) contains scripts used to create the figures and tables
-- [Proteomic](proteomics) contains all scripts used for the proteogenomic analysis
+- [Proteomics](proteomics) contains all scripts used for the proteogenomic analysis
 - [Transcriptomics](transcriptomics) contains all scripts for the Iso-Seq analysis
 - [Data](data) can be used to store the downloaded data from Zenodo to rerun the scripts
