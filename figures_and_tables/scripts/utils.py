@@ -95,3 +95,4 @@ def refine_source(sources):
     if len(set(sources))==1:
         return(sources[0])
     return('Multi-mapping')
+
