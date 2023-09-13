@@ -2,6 +2,7 @@
 ## Required data
 - Raw data is available at EGA with accesion X
 - Intermediate files can be downloaded from Zenodo: 
+- Publicly available short-read RNA-sequencing data included in the SQANTI3 and TALON analysis can be downloaded from  EBI's ArrayExpress (E-MTAB-4377).
 
 ## Iso-Seq analysis with IsoQuant
 
@@ -28,9 +29,6 @@
 | cDNA_Cupcake | 28.0.0 | https://github.com/Magdoll/cDNA_Cupcake |
 | SQANTI3 | 5.1 | https://github.com/ConesaLab/SQANTI3 |
 
-### Additional data
-- We included publicly available short-read RNA-sequencing data for the SQANTI3 analysis. The data is available through EBI's ArrayExpress (E-MTAB-4377).
-
 ### Scripts
 Start with 'flnc.bam' from the IsoQuant analysis
 1. [Isoseq](sqanti/isoseq.sh) - Cluster the isoforms, align them to the reference genome, and run cDNA Cupcake filtering
@@ -44,4 +42,7 @@ Start with 'flnc.bam' from the IsoQuant analysis
 | ----- | ------- | ---- | 
 | TranscriptClean | 2.0.3 | https://github.com/mortazavilab/TranscriptClean |
 | TALON | 5.0 | https://github.com/mortazavilab/TALON |
+
+### Acripts
+Start with flnc.bam from the Isoquant analysis
 
