@@ -1,0 +1,3 @@
+../data/transcriptomics/sample1/aln.sorted.bam:s1
+../data/transcriptomics/sample2/aln.sorted.bam:s2
+../data/transcriptomics/sample3/aln.sorted.bam:s3
