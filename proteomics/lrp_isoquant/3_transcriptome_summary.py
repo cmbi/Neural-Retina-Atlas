@@ -112,14 +112,13 @@ def main():
     pb_gene = pb_gene.drop_duplicates()
     pb_gene.to_csv(os.path.join(odir, 'pb_gene.tsv'), sep="\t", index= False, na_rep='0')
 
-    '''
-    # Make Abundance Table and Merge with Gene_Length_Stats Table 
-    ab_tab = abund(sq_isotab, results.tpm_file)
-    gene_len_stats = pd.read_csv(results.gene_len_stats_tab, sep = '\t')
-    gen_lenab = pd.merge(gene_len_stats, ab_tab, how="right", on='gene')
-    '''
+    # This part is commented out to let the script run without Kallisto input
+    # # Make Abundance Table and Merge with Gene_Length_Stats Table 
+    # ab_tab = abund(sq_isotab, results.tpm_file)
+    # gene_len_stats = pd.read_csv(results.gene_len_stats_tab, sep = '\t')
+    # gen_lenab = pd.merge(gene_len_stats, ab_tab, how="right", on='gene')
 
-    # Make and Merge with PolyA Table 
+    # # Make and Merge with PolyA Table 
     # ribo = pd.read_csv(results.ribodep_tpm, sep='\t')
     # rgen = ribo.groupby(['gene']).agg(rtpm=('tpm', 'sum')).reset_index()
 
@@ -127,20 +126,17 @@ def main():
     # rgen['log(rtpm+1)'] = np.log10(rgen['rtpm'] + 1)
     # ab_tab['log(tpm+1)'] = np.log10(ab_tab['tpm'] + 1)
 
-    #ratio = pd.merge(rgen, ab_tab, how = 'left', on='gene')
-    #ratio['rtpm/tpm'] = ratio['rtpm']/ratio['tpm']
-    #ratio_tab = ratio[['gene', 'rtpm/tpm']]
-    '''
-    # 
-    # new line
-    # 
-    ratio_tab = ab_tab['tpm']    
+    # ratio = pd.merge(rgen, ab_tab, how = 'left', on='gene')
+    # ratio['rtpm/tpm'] = ratio['rtpm']/ratio['tpm']
+    # ratio_tab = ratio[['gene', 'rtpm/tpm']]
 
-    gen_tab = pd.merge(gen_lenab, ratio_tab, how='left', on='gene')
+    # ratio_tab = ab_tab['tpm']    
+
+    # gen_tab = pd.merge(gen_lenab, ratio_tab, how='left', on='gene')
 
     # Output Table 
-    gen_tab.to_csv(os.path.join(odir, 'gene_level_tab.tsv'), sep="\t", index= False, na_rep='0')
-    '''
+    # gen_tab.to_csv(os.path.join(odir, 'gene_level_tab.tsv'), sep="\t", index= False, na_rep='0')
+
 
 if __name__ == "__main__":
     main()

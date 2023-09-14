@@ -88,15 +88,9 @@ def plus_mapping(exons, orf_coord, start_codons, pool, num_cores = 12):
     
     orf_chromosomes = plus_exons['seqname'].unique()
     ref_chromosomes = start_codons['seqname'].unique()
-
-    #print('orf_chromosomes', orf_chromosomes)
-    #print('ref_chromosomes', ref_chromosomes)
     
     accession_map = plus_exons.groupby('seqname')['transcript_id'].apply(list).to_dict()
-    #print('accession_map')
-    #print(accession_map)
     orf_coord_list = [orf_coord[orf_coord['pb_acc'].isin(accession_map[csome])].copy() for csome in orf_chromosomes]
-    #print('orf_coord_list', orf_coord_list)
     exon_list = [plus_exons[plus_exons['seqname'] == csome].copy() for csome in orf_chromosomes]
     
     start_codon_list = []

@@ -147,31 +147,11 @@ nextflow ${script_folder}/9_sqanti_protein.nf \
 --reference_exon ${out_folder}/8_rename_cds_to_exon/gencode.transcript_exons_only.gtf \
 --reference_cds ${out_folder}/8_rename_cds_to_exon/gencode.cds_renamed_exon.gtf \
 
-conda deactivate
-
-#!/bin/bash
-#$ -cwd
-#$ -o lrp_2.out
-#$ -e lrp_2.err
-#$ -V
-#$ -pe smp 1
-#$ -q all.q@narrativum.umcn.nl,all.q@noggo.umcn.nl
-
-source /mnt/home2/tabear/anaconda3/etc/profile.d/conda.sh
-
-out_folder=/mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.2/lrp_from_gtf
-script_folder=/mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.1/lrp/modules
-sqanti_classification=/mnt/xomics/tabear/pacbio/atlas_paper/isoquant/isoquant_3.1.2/isoquant_transcript.SQANTI-like.tsv
-gencode=/mnt/xomics/tabear/ref_genome/GRCh38/pacbio/gencode.v39.primary_assembly.annotation.gtf
-name=hnr_50
-
-conda activate lrp
-
 ######################### 10. Add Isoquant classification (to change the sqanti classification assigned in step 8 back to isoquant) #########################
 mkdir ${out_folder}/10_add_isoquant_classification
 
 python ${script_folder}/10_add_isoquant_classification.py \
---isoquant $sqanti_classification \
+--isoquant $classification \
 --sqanti_p ${out_folder}/9_sqanti_protein/${name}.sqanti_protein_classification.tsv \
 --out ${out_folder}/10_add_isoquant_classification/${name}.sqanti_protein_isoquant_classification.tsv 
 
