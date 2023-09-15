@@ -37,23 +37,23 @@ def combine_by_sequence(orfs, pb_seqs):
         pb_pseqs[prot_seq].append(pb_acc)
     return pb_pseqs
 
-'''
-def order_pb_acc_numerically(accs):
-    logging.info('Ordering PB Accession Numerically...')
-    # order pb accessions by numbers
-    accs_numerical = []
-    for acc in accs:
-        pb, gene_idx, iso_idx = acc.split('.')
-        gene_idx = int(gene_idx)
-        iso_idx = int(iso_idx)
-        accs_numerical.append([gene_idx, iso_idx])
-    accs_numerical.sort()
-    num_sorted_accs = ['PB.' + str(g) + '.' + str(i) for g, i in accs_numerical]
-    return num_sorted_accs
-'''
+############################################# modified #############################################
+# def order_pb_acc_numerically(accs):
+#     logging.info('Ordering PB Accession Numerically...')
+#     # order pb accessions by numbers
+#     accs_numerical = []
+#     for acc in accs:
+#         pb, gene_idx, iso_idx = acc.split('.')
+#         gene_idx = int(gene_idx)
+#         iso_idx = int(iso_idx)
+#         accs_numerical.append([gene_idx, iso_idx])
+#     accs_numerical.sort()
+#     num_sorted_accs = ['PB.' + str(g) + '.' + str(i) for g, i in accs_numerical]
+#     return num_sorted_accs
 
 def order_pb_acc_numerically(accs):
     return sorted(accs)
+############################################# modified #############################################
 
 def aggregate_results(pacbio, orfs):
     logging.info('Aggregating Results')

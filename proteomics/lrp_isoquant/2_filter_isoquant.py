@@ -14,11 +14,12 @@ Filter IsoQuant results based on several criteria
 - protein coding only
         Transcript aligns to a Gencode-annotated protein coding gene.
 """
-
+############################################# modified #############################################
 structural_categories = {
     'all': ['full-splice_match', 'novel_not_in_catalog', 'novel_in_catalog'],
     'novel': ['novel_not_in_catalog', 'novel_in_catalog']
 }
+############################################# modified #############################################
 
 
 def string_to_boolean(string):
@@ -100,10 +101,21 @@ def main():
     parser.add_argument("--ensg_gene", action="store", dest="ensg_gene", required=False)
     parser.add_argument("--structural_categories_level", action="store", dest="structural_categories_level", default="strict")
     parser.add_argument("--out_dir", action="store", dest="output_directory", default="strict")
+    ############################################# modified #############################################
+    # parser.add_argument("--filter_intra_polyA", action="store", dest="filter_intra_polyA", default="yes")
+    # parser.add_argument("--filter_template_switching", action="store", dest="filter_template_switching", default="yes")
+    # parser.add_argument("--percent_A_downstream_threshold", action="store", dest="percent_A_downstream_threshold", default=95,type=float)
+    # parser.add_argument("--minimum_illumina_coverage", action="store", dest="min_illumina_coverage", type=int, default=3)
+    ############################################# modified #############################################
+
     
     results = parser.parse_args()
     # Get boolean filtering decisions
     is_protein_coding_filtered = string_to_boolean(results.filter_protein_coding)
+    ############################################# modified #############################################
+    # is_intra_polyA_filtered = string_to_boolean(results.filter_intra_polyA)
+    # is_template_switching_filtered = string_to_boolean(results.filter_template_switching)
+    ############################################# modified #############################################
 
     # Read classification table
     classification = pd.read_table(results.classification_file)
@@ -113,6 +125,16 @@ def main():
     # Filter classification file
     if is_protein_coding_filtered:
         classification = filter_protein_coding(classification, results.protein_coding_genes, results.ensg_gene)
+    ############################################# modified #############################################
+    # if is_intra_polyA_filtered:
+    #     classification = filter_intra_polyA(classification, results.percent_A_downstream_threshold)
+    # if is_template_switching_filtered:
+    #     classification = filter_rts_stage(classification)
+    ############################################# modified #############################################
+
+
+    # turn off Illumina filtering 
+    # classification = filter_illumina_coverage(classification, results.min_illumina_coverage)
 
     if results.structural_categories_level in structural_categories.keys():
         classification = classification[classification['structural_category'].isin(structural_categories[results.structural_categories_level])]

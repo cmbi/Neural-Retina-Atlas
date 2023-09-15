@@ -45,8 +45,10 @@ def make_region_bed_for_ucsc(name, sample_gtf, reference_gtf):
 
     # sort bed
     rows = subprocess.getoutput(f'bedtools sort -i {fn}')
+    ############################################# modified #############################################
     fn_sorted = fn.split('/')[-1].replace('.', '_sorted.')
     fn_sorted = ('/').join(fn.split('/')[:-1]) + '/' + fn_sorted
+    ############################################# modified #############################################
 
     # subtract 1 from start
     with open(fn_sorted, 'w') as ofile:

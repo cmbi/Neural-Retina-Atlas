@@ -95,6 +95,8 @@ def IsoLenTab(fa_file, results):
     # Parse fafsa file to append isoform, gene and length information 
     for line in open(fa_file):
         if line.startswith('>'):
+
+    ############################################# modified #############################################
             #isos.append(line.split('|')[4].split('""')[0])
             #genes.append(line.split('|')[5].split('""')[0])
             #lens.append(line.split('|')[6].split('""')[0])
@@ -102,6 +104,8 @@ def IsoLenTab(fa_file, results):
             isos.append(line.split('|')[5].split('""')[0])
             genes.append(line.split('|')[6].split('""')[0])
             lens.append(line.split('|')[7].split('""')[0])
+
+    ############################################# modified #############################################
 
     # Export Data as a DataFrame and a tsv file
     data = {'isoform': isos, 'gene': genes, 'length': [int(x_len) for x_len in lens]}

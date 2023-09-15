@@ -75,9 +75,10 @@ def add_rgb_shading_cpm(name, bed,split_size):
     elif split_size==4:
         subbed = bed[['acc_full', 'gene', 'pb_acc','pclass', 'cpm']].copy()
 
-
+    ############################################# modified #############################################
     #subbed['cpm'] = subbed['cpm'].astype(str).astype(int)
     subbed['cpm'] =  subbed['cpm'].astype(float).astype(int)
+    ############################################# modified #############################################
 
     shaded = subbed.groupby('gene').apply(calculate_rgb_shading).reset_index(drop=True)
 
@@ -90,9 +91,9 @@ def add_rgb_shading_cpm(name, bed,split_size):
     pb_sizes = bed_shaded['pb_acc'].apply(lambda x: len(x))
     max_pb = max(pb_sizes)
     
-    ############################### new line ####################################
+    ############################################# modified #############################################
     bed_shaded['cpm'] = bed_shaded['cpm'].astype(float).astype(int)
-    ####################################
+    ############################################# modified #############################################
 
     bed_shaded['cpm'] = bed_shaded['cpm'].apply(lambda cpm: str(cpm) if int(cpm) <=1000 else f'{int(cpm)/1000:.1f}K')
     cpm_sizes = bed_shaded['cpm'].apply(lambda x: len(x))
@@ -134,9 +135,9 @@ def add_rgb_shading_pclass(name,bed):
     pb_sizes = bed['pb_acc'].apply(lambda x: len(x))
     max_pb = max(pb_sizes)
 
-    ############################## new line ####################################
+    ############################################# modified #############################################
     bed['cpm'] = bed['cpm'].astype(float).astype(int)
-    ####################################
+    ############################################# modified #############################################
     bed['cpm'] = bed['cpm'].apply(lambda cpm: str(cpm) if int(cpm) <=1000 else f'{int(cpm)/1000:.1f}K')
     cpm_sizes = bed['cpm'].apply(lambda x: len(x))
     cpm_len = max(cpm_sizes)

@@ -27,6 +27,9 @@ def map_orf_class_to_color(name):
 def add_color_to_bed(input_file, output_file, mapping_function):
     bed = pd.read_csv(input_file, sep = '\t', header= None)
     bed.columns = ['chrom', 'chromStart', 'chromEnd', 'name', 'score', 'strand', 'tickStart', 'thickEnd', 'itemRgb', 'blockCount', 'blockSizes', 'blockStarts']
+    # only keep the transcript name and protein classification in the name
+    if mapping_function == map_orf_class_to_color:
+        bed['name'] = bed['name'].str.split('|').str[1:3].str.join('|')
     bed['itemRgb'] = bed['name'].apply(mapping_function)
     bed.to_csv(output_file, sep = '\t', header=False, index = False)
 
@@ -48,3 +51,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    

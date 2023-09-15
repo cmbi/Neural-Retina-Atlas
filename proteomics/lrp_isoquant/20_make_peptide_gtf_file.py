@@ -76,11 +76,15 @@ def process_psmtsv(psmtsv_file, gene_map):
 
     # read in peptide data, filter for target + 1% fdr
     pep = pd.read_table(psmtsv_file)
+    ############################################# modified #############################################
+    # # pep = pep.iloc[:, [12, 24, 37, 48]]
+    # pep = pep[['Base Sequence','Protein Accession','Decoy/Contaminant/Target','QValue', 'Previous Amino Acid', 'Next Amino Acid']]
+    # pep.columns = ['pep', 'pb_acc', 'targ', 'qval', 'prev_aa','next_aa']
     pep = pep[['Peptide','Protein', 'Mapped Proteins', 'Probability', 'Prev AA', 'Next AA']]
     pep.columns = ['pep', 'main_protein', 'additional_proteins', 'prob', 'prev_aa','next_aa']
     # TODO add back in proper filter
     # pep = pep[pep.targ == 'T']
-    #pep = pep[(pep.targ =='T') & (pep.qval <= 0.01)]
+    # pep = pep[(pep.targ =='T') & (pep.qval <= 0.01)]
     # Filter out contaminants
     pep = pep[pep["main_protein"].str.startswith("sp") == False]
 
@@ -95,6 +99,7 @@ def process_psmtsv(psmtsv_file, gene_map):
     for i in accessions:
         mapped_proteins.append([j.split('|')[1] for j in i if 'sp' not in j])
     pep['pb_acc'] = mapped_proteins
+    ############################################# modified #############################################
 
     pep = pep[['pep', 'pb_acc', 'prev_aa','next_aa']]
     pep = pep.explode('pb_acc')

@@ -272,11 +272,9 @@ def main():
 
     logging.info("Mapping orfs to gencode...")
     all_orfs = orf_mapping(orf_coord, gencode, sample_gtf, orf_seq, pool, results.num_cores)
-    #print(all_orfs.head())
     all_orfs.to_csv(results.output + '_all_orfs_mapped.tsv', sep='\t',index=False)
     
     logging.info("Calling ORFs...")
-    # orfs = orf_calling(all_orfs, num_orfs_per_accession = 1)
     orfs = orf_calling_multiprocessing(all_orfs, pool, 1, results.num_cores)
     
     logging.info("Adding metadata...")
@@ -294,11 +292,13 @@ def main():
        'upstream_atgs', 'atg_rank', 'score_rank', 'orf_calling_confidence','atg_score', 'orf_score', 'gene', 'FL_count', 'CPM','has_stop_codon']]
     orfs.to_csv(results.output + '_best_orf.tsv', index = False, sep = "\t")
 
+    ############################################# modified #############################################
     # Remove stop codon from ORF
     orfs_without_stop = orfs.copy()
     orfs_without_stop['orf_end'] = orfs_without_stop['orf_end']-3
     orfs_without_stop['orf_len'] = orfs_without_stop['orf_len']-3
     orfs_without_stop.to_csv(results.output + '_best_orf_without_stop.tsv', index = False, sep = "\t")
+    ############################################# modified #############################################
 
 #%%
 
