@@ -9,7 +9,9 @@ THe processed data is available as UCSC genome browser track (link) and as visua
 
 ## Scripts
 
+- [Data](data) can be used to store the downloaded data from Zenodo to rerun the scripts
 - [Figures and Tables](figures_and_tables) contains scripts used to create the figures and tables
 - [Proteomics](proteomics) contains all scripts used for the proteogenomic analysis
 - [Transcriptomics](transcriptomics) contains all scripts for the Iso-Seq analysis
-- [Data](data) can be used to store the downloaded data from Zenodo to rerun the scripts
+- [Retina specific exons](retina_specific_exons) describes how we looked for previous identified retina-specific exons in our PacBio dataset
+
