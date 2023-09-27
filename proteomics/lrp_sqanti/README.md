@@ -4,7 +4,7 @@ Scripts are adapted from Miller at al. (https://github.com/sheynkman-lab/Long-Re
 
 > Miller, R.M., Jordan, B.T., Mehlferber, M.M. et al. Enhanced protein isoform characterization through long-read proteogenomics. Genome Biol 23, 69 (2022). https://doi.org/10.1186/s13059-022-02624-y
 
-We reused as much as possible of the scripts. However, we used IsoQuant instead of SQANTI for our PacBio transcriptome, and we used MSFragger instead of Metamorpheus for mass-spectrometry analysis.
+We reused as much as possible of the scripts. However, we used MSFragger instead of Metamorpheus for mass-spectrometry analysis.
 
 The following scripts were used (scripts marked with * were adapted or new):
 
@@ -15,8 +15,6 @@ The new part in the script is marked with
 ############################################# modified #############################################
  ``` 
 
-- [0. Create SQANTI3 classification file from gtf](0_create_sqanti_from_gtf.py)*
-    - New file needed necessary to convert the IsoQuant output into a SQANTI3-like classification file
 - [1a. prepare reference table](1a_prepare_reference_table.py)*
     - Modified to work with GENCODE v39
 - [1b. Create a GENCODE reference database](1b_make_gencode_database.py)
