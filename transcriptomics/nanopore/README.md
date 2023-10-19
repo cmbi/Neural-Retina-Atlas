@@ -2,12 +2,12 @@
 
 ## 1. Merge the three individual gtf files with GFFCompare
 
-    ```
-    gffcompare -R -M \
-    -o gffcompare_ont \
-    -r ../data/ref_genome/gencode.v39.primary_assembly.annotation.gtf \
-    NR_donor1.gtf NR_donor2.gtf NR_donor3.gtf NR_donor1_ird.gtf NR_donor2_ird.gtf NR_donor3_ird.gtf 
-    ```
+```
+gffcompare -R -M \
+-o gffcompare_ont \
+-r ../data/ref_genome/gencode.v39.primary_assembly.annotation.gtf \
+NR_donor1.gtf NR_donor2.gtf NR_donor3.gtf NR_donor1_ird.gtf NR_donor2_ird.gtf NR_donor3_ird.gtf 
+```
 
 ## 2. CPAT
 
@@ -37,7 +37,7 @@
     singularity shell -B `pwd`:/mnt/data/ agat_1.0.0--pl5321hdfd78af_0.sif
     agat_convert_sp_gff2bed.pl -gff /mnt/data/gffcompare_ont.combined.gtf -o /mnt/data/gffcompare_ont.combined.bed
      ```
-     
+
 ## 5. Convert CPAT output to BED
     The container is available at docker under rlsalz/biopj
     ```
