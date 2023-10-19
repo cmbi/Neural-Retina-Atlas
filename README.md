@@ -14,4 +14,5 @@ The processed data is available as UCSC genome browser track (link) and as visua
 - [Proteomics](proteomics) contains all scripts used for the proteogenomic analysis
 - [Transcriptomics](transcriptomics) contains all scripts for the Iso-Seq analysis
 - [Retina specific exons](retina_specific_exons) describes how we looked for previous identified retina-specific exons in our PacBio dataset
+- [Scripts](scripts) contains small scripts and functions used for the analysis
 
