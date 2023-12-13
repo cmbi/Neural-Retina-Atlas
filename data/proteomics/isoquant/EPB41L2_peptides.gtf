@@ -1,0 +1,3 @@
+chr6	hg38_canon	transcript	130870109	130872385	.	-	.	gene_id "EPB41L2"; transcript_id "SHLLESSHETL";
+chr6	hg38_canon	CDS	130870109	130870126	.	-	.	gene_id "EPB41L2"; transcript_id "SHLLESSHETL";
+chr6	hg38_canon	CDS	130872371	130872385	.	-	.	gene_id "EPB41L2"; transcript_id "SHLLESSHETL";

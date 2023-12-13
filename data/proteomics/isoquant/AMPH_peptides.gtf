@@ -1,0 +1,10 @@
+chr7	hg38_canon	transcript	38428338	38428371	.	-	.	gene_id "AMPH"; transcript_id "AESSLIEGSER";
+chr7	hg38_canon	CDS	38428338	38428371	.	-	.	gene_id "AMPH"; transcript_id "AESSLIEGSER";
+chr7	hg38_canon	transcript	38427879	38427933	.	-	.	gene_id "AMPH"; transcript_id "DQDINNSDLSEDEIANQR";
+chr7	hg38_canon	CDS	38427879	38427933	.	-	.	gene_id "AMPH"; transcript_id "DQDINNSDLSEDEIANQR";
+chr7	hg38_canon	transcript	38428077	38428131	.	-	.	gene_id "AMPH"; transcript_id "DTEGLDNSWTHSDVVEHK";
+chr7	hg38_canon	CDS	38428077	38428131	.	-	.	gene_id "AMPH"; transcript_id "DTEGLDNSWTHSDVVEHK";
+chr7	hg38_canon	transcript	38428995	38429028	.	-	.	gene_id "AMPH"; transcript_id "TLEGTEEFEEK";
+chr7	hg38_canon	CDS	38428995	38429028	.	-	.	gene_id "AMPH"; transcript_id "TLEGTEEFEEK";
+chr7	hg38_canon	transcript	38427849	38427900	.	-	.	gene_id "AMPH"; transcript_id "DEIANQRYGLLYQEIEA";
+chr7	hg38_canon	CDS	38427849	38427900	.	-	.	gene_id "AMPH"; transcript_id "DEIANQRYGLLYQEIEA";
