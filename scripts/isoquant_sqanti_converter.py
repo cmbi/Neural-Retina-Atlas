@@ -19,6 +19,7 @@ def main():
     parser.add_argument('sqanti_read', help='SQANTI classification file read-level from isoquant')
     parser.add_argument('read_mapping', help='isoquant file that ends with .transcript_model_reads.tsv')
     parser.add_argument('counts', help='isoquant file that ends with .transcript_model_counts.tsv')
+
     args=parser.parse_args()
 
     read_to_transcript=create_mapping_from_df(args.read_mapping)

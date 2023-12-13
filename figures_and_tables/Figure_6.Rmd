@@ -5,7 +5,7 @@ output: html_notebook
 ---
 # Define the gene of interest
 ```{r}
-gene_of_interest <- "IMPDH1" # CRB1, MYO7A, IMPDH1
+gene_of_interest <- "CRB1" # CRB1, SLC24A1, IMPDH1
 ```
 
 
@@ -123,49 +123,56 @@ gencode %>% head()
 
 # Load ONT ORFs
 ```{r}
-ont_cds <- rtracklayer::import("../data/transcriptomics/ont.gtf")
-ont_cds <- ont_cds %>% dplyr::as_tibble()
 
-# extract the required annotation columns
-ont_cds <- ont_cds %>% 
-  dplyr::select(
-    seqnames,
-    start,
-    end,
-    strand,
-    type,
-    gene_id,
-    transcript_id)
-
-#ont_cds <- ont_cds %>% 
-# rename(transcript = transcript_id)
-colnames(ont_cds)[7] <- 'transcript'
-
-ont_cds$orf_class <- 'ONT'
-ont_cds$transcript_class <- 'ONT'
-
-ont_cds$transcript_type <- 'protein_coding'
-
-# Filter for gene of interest
-switch(gene_of_interest,
-       "MYO7A" = {
-         ont_cds <- ont_cds[ont_cds$gene_id %in% c('TCONS_00000403_ORF_1', 'TCONS_00000389_ORF_1'), ]
-       },
-       "IMPDH1" = {
-         ont_cds <- ont_cds[ont_cds$gene_id %in% c('TCONS_00001301_ORF_1'), ]
-       },
-       "CRB1" = {
-         ont_cds <- ont_cds[ont_cds$gene_id %in% c('TCONS_00000224_ORF_1', 'TCONS_00000221_ORF_1'), ]
-       }
-)
-
-ont_cds %>% head()
+if (gene_of_interest != 'CRB1') {
+ 
+  ont_cds <- rtracklayer::import("../data/transcriptomics/ont.gtf")
+  ont_cds <- ont_cds %>% dplyr::as_tibble()
+  
+  # extract the required annotation columns
+  ont_cds <- ont_cds %>% 
+    dplyr::select(
+      seqnames,
+      start,
+      end,
+      strand,
+      type,
+      gene_id,
+      transcript_id)
+  
+  #ont_cds <- ont_cds %>% 
+  # rename(transcript = transcript_id)
+  colnames(ont_cds)[7] <- 'transcript'
+  
+  ont_cds$orf_class <- 'ONT'
+  ont_cds$transcript_class <- 'ONT'
+  
+  ont_cds$transcript_type <- 'protein_coding'
+  
+  # Filter for gene of interest
+  switch(gene_of_interest,
+         "SLC24A1" = {
+           ont_cds <- ont_cds[ont_cds$gene_id %in% c('TCONS_00000580_ORF_1'), ]
+         },
+         "IMPDH1" = {
+           ont_cds <- ont_cds[ont_cds$gene_id %in% c('TCONS_00001301_ORF_1'), ]
+         }
+  )
+  
+  ont_cds %>% head()
+  
+}
 
 ```
  
 # Combine the GENCODE, PacBio and ONT transcripts
 ```{r}
-combined <- rbind(gencode,goi_annotation_from_gtf, ont_cds)
+
+if (gene_of_interest != 'CRB1') {
+  combined <- rbind(gencode,goi_annotation_from_gtf, ont_cds)
+} else {
+  combined <- rbind(gencode,goi_annotation_from_gtf)
+}
 
 goi_combined <- combined  %>% 
   dplyr::filter(
@@ -195,11 +202,6 @@ goi_cds_w_stop <- goi_cds %>%
          end = ifelse(end == max(end), end + 3, end)
      ) %>%
      dplyr::ungroup()
-
-# The script only works for genes with a UTR so we add a UTR of 1 bp to ENST00000669443.1
-if (gene_of_interest == 'MYO7A'){
-  goi_cds[148, 'end'] <- 77172884
-}
 
 # add utr adds ranges that represent the utr
 goi_cds_utr <- add_utr(
@@ -254,12 +256,6 @@ goi_cds_w_stop <- goi_cds %>%
          end = ifelse(end == max(end), end + 3, end)
      ) %>%
      dplyr::ungroup()
-
-# ENST00000669443.1" causes an error in add_utr because it has no UTR
-# Manually add a UTR to apply the function:
-if (gene_of_interest == 'MYO7A') {
-  goi_cds[148, 3] <- 77172885-1
-}
 
 # add utr adds ranges that represent the utr
 goi_cds_utr <- add_utr(
@@ -376,10 +372,10 @@ plot <- ggarrange(transcript_plot,
 
 if (gene_of_interest == 'CRB1'){
   h = 2.75
-} else if (gene_of_interest == 'MYO7A'){
-  h = 3
+} else if (gene_of_interest == 'SLC24A1'){
+  h = 2.5
 } else if (gene_of_interest == 'IMPDH1'){
-  h = 3.75
+  h = 4.25
 }
 
 # Save the plot

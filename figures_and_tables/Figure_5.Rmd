@@ -25,7 +25,7 @@ library(devtools)
 library(svglite)
 
 # Load functions from utils
-source("scripts/utils.R") 
+source("../scripts/utils.R") 
 ```
 
 # Define the gene of interest
@@ -68,15 +68,17 @@ ref_transcripts <- c('ENST00000356264.7', 'ENST00000651641.1', 'ENST00000337057.
 
 ```{r}
 # Files for isoquant
-isoquant_gtf = '../data/proteomics/hnr_50_with_cds_filtered.gtf'
-out_path = paste('../data/proteomics/', gene, '.gtf', sep='')
+isoquant_gtf = '../data/proteomics/isoquant/hnr_50_with_cds_filtered.gtf'
+out_path = paste('../data/proteomics/isoquant/', gene, '.gtf', sep='')
 # Add UTR to the gtf file
 combined_cds_utr_gtffile(gene, isoquant_gtf, out_path)
 ```
 
+
+
 # Create the Isoquant transcript track
 ```{r}
-isoquant_path = paste('../data/transcriptomics/', gene, '.gtf', sep="")
+isoquant_path = paste('../data/proteomics/isoquant/', gene, '.gtf', sep="")
 rnaatlasTrack <- GeneRegionTrack(isoquant_path, chromosome = thechr, genome = theGeneome, name = "PacBio", col="NA", 
                                  fill= "#E76F51",  background.title = "darkgrey", col="NA", transcriptAnnotation="transcript")
 
@@ -88,7 +90,7 @@ rnaatlasTrack@dp@pars$just.group <- "left"
 
 # Create the gencode transcript track
 ```{r}
-gencode_path = paste('../data/transcriptomics/', gene, '_gencode.gtf', sep="")
+gencode_path = paste('../data/ref_genome/', gene, '_gencode.gtf', sep="")
 
 # using the rtracklayer import function I can read the GFF3 from GenCode and create conversion table between gene id and gene symbol
 gtf <- import(gencode_path, format = "gtf")
@@ -107,7 +109,7 @@ gencode <- gencode[gene(gencode) == gene_id & feature(gencode) %in% c("CDS", "UT
 
 # Create the peptide track
 ```{r}
-pep_gtf <- paste('../data/proteomics/', gene, '_peptides.gtf', sep="")
+pep_gtf <- paste('../data/proteomics/isoquant/', gene, '_peptides.gtf', sep="")
   
 peptides_gtf <- GeneRegionTrack(pep_gtf, chromosome=thechr, genome = theGeneome, name = 'Peptides', 
                                  fill="#FFB400", collapseTranscripts = FALSE,  background.title = "darkgrey", col="NA", transcriptAnnotation="transcript")
@@ -116,7 +118,7 @@ peptides_gtf <- peptides_gtf[feature(peptides_gtf) %in% c("CDS")]
 
 # Create a track for the Nanopore data
 ```{r}
-nanopore <- GeneRegionTrack("../data/transcriptomics/ont.gtf", 
+nanopore <- GeneRegionTrack("../data/transcriptomics/nanopore/ont_ucsc.gtf", 
                              chromosome=thechr, genome = theGeneome,name = 'Nanopore', start=st, end=en,
                              fill="#567568",background.title = "darkgrey", col="NA", transcriptAnnotation="transcript")
 nanopore <- nanopore[feature(nanopore) %in% c("exon")]
@@ -130,8 +132,8 @@ gtrack <- GenomeAxisTrack()
 picture_path= paste('plots/novel_peptides_', gene, '_nanopore.svg', sep='')
 
 svglite(filename = picture_path,
-   width     = 4.25,
-   height    = 2.5,
+   width     = 5,
+   height    = 2.75,
    pointsize = 10
    )
 # Filter the Nanopore track for transcripts that contain the novel peptides
@@ -147,11 +149,13 @@ if (gene == 'EPB41L2') {
 # Create the plot
 plotTracks(
   list(gencode, rnaatlasTrack, nanopore, peptides_gtf,gtrack),
-  from = st, to = en, chromosome = thechr, thinBoxFeature="UTR", collapse= TRUE, reverseStrand = min_strand,
+  from = st, to = en, chromosome = thechr, thinBoxFeature="UTR", collapse= FALSE, reverseStrand = min_strand,
   cex = 1.2,cex.title = 0.9, title.width = 3, rot.title = 0
 )
 dev.off()
 ```
+
+
 # Create the GENCDOE reference transcript plot on top of the figure
 ```{r}
 gencode_ref_transcript <- gencode[transcript(gencode) %in% ref_transcripts]
@@ -178,10 +182,8 @@ if (gene == 'AMPH'){
 
 plotTracks(
   list(gencode_ref_transcript),
-  from = start, to = end, chromosome = thechr, thinBoxFeature="UTR",reverseStrand = TRUE
+  from = start, to = end, chromosome = thechr, thinBoxFeature="UTR",reverseStrand = TRUE, collapse = FALSE
 )
 
 dev.off()
 ```
-
-
