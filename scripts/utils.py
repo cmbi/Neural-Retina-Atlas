@@ -8,7 +8,7 @@ from pyteomics.parser import cleave
 
 
 def ird_gene_list():
-    with open('/mnt/xomics/tabear/retnet/unique_retnetgenes.txt', 'r') as file:
+    with open('../data/retnet/unique_retnetgenes.txt', 'r') as file:
         ird_genes = file.readlines()
     ird_genes = [i.strip() for i in ird_genes]
     return ird_genes

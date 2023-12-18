@@ -1772,16 +1772,77 @@ AMPH</h1>
 <h1>Import packages</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KEd2aXopXG5saWJyYXJ5KGJpb21hUnQpXG5saWJyYXJ5KGdsdWUpXG5saWJyYXJ5KGdndHJhbnNjcmlwdClcbmxpYnJhcnkoJ0dlbm9taWNGZWF0dXJlcycpXG5saWJyYXJ5KCdydHJhY2tsYXllcicpXG5saWJyYXJ5KGRldnRvb2xzKVxubGlicmFyeShzdmdsaXRlKVxuXG4jIExvYWQgZnVuY3Rpb25zIGZyb20gdXRpbHNcbnNvdXJjZShcIi4uL3NjcmlwdHMvdXRpbHMuUlwiKSBcbmBgYCJ9 -->
-<pre class="r"><code>library(tidyverse)
-library(Gviz)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pSA4pSAIEF0dGFjaGluZyBjb3JlIHRpZHl2ZXJzZSBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDIuMC4wIOKUgOKUgFxu4pyUIGRwbHlyICAgICAxLjEuMiAgICAg4pyUIHJlYWRyICAgICAyLjEuNFxu4pyUIGZvcmNhdHMgICAxLjAuMCAgICAg4pyUIHN0cmluZ3IgICAxLjUuMFxu4pyUIGdncGxvdDIgICAzLjQuMyAgICAg4pyUIHRpYmJsZSAgICAzLjIuMVxu4pyUIGx1YnJpZGF0ZSAxLjkuMiAgICAg4pyUIHRpZHlyICAgICAxLjMuMFxu4pyUIHB1cnJyICAgICAxLjAuMiAgICAg4pSA4pSAIENvbmZsaWN0cyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlX2NvbmZsaWN0cygpIOKUgOKUgFxu4pyWIGx1YnJpZGF0ZTo6JXdpdGhpbiUoKSBtYXNrcyBJUmFuZ2VzOjold2l0aGluJSgpXG7inJYgZHBseXI6OmNvbGxhcHNlKCkgICAgIG1hc2tzIElSYW5nZXM6OmNvbGxhcHNlKClcbuKcliBkcGx5cjo6Y29tYmluZSgpICAgICAgbWFza3MgQmlvY0dlbmVyaWNzOjpjb21iaW5lKClcbuKcliBkcGx5cjo6ZGVzYygpICAgICAgICAgbWFza3MgSVJhbmdlczo6ZGVzYygpXG7inJYgdGlkeXI6OmV4cGFuZCgpICAgICAgIG1hc2tzIFM0VmVjdG9yczo6ZXhwYW5kKClcbuKcliBkcGx5cjo6ZmlsdGVyKCkgICAgICAgbWFza3Mgc3RhdHM6OmZpbHRlcigpXG7inJYgZHBseXI6OmZpcnN0KCkgICAgICAgIG1hc2tzIFM0VmVjdG9yczo6Zmlyc3QoKVxu4pyWIGRwbHlyOjpsYWcoKSAgICAgICAgICBtYXNrcyBzdGF0czo6bGFnKClcbuKcliBnZ3Bsb3QyOjpQb3NpdGlvbigpICAgbWFza3MgQmlvY0dlbmVyaWNzOjpQb3NpdGlvbigpLCBiYXNlOjpQb3NpdGlvbigpXG7inJYgcHVycnI6OnJlZHVjZSgpICAgICAgIG1hc2tzIEdlbm9taWNSYW5nZXM6OnJlZHVjZSgpLCBJUmFuZ2VzOjpyZWR1Y2UoKVxu4pyWIGRwbHlyOjpyZW5hbWUoKSAgICAgICBtYXNrcyBTNFZlY3RvcnM6OnJlbmFtZSgpXG7inJYgbHVicmlkYXRlOjpzZWNvbmQoKSAgIG1hc2tzIFM0VmVjdG9yczo6c2Vjb25kKClcbuKcliBsdWJyaWRhdGU6OnNlY29uZDwtKCkgbWFza3MgUzRWZWN0b3JzOjpzZWNvbmQ8LSgpXG7inJYgZHBseXI6OnNsaWNlKCkgICAgICAgIG1hc2tzIElSYW5nZXM6OnNsaWNlKClcbuKEuSBVc2UgdGhlIFx1MDAxYl04OztodHRwOi8vY29uZmxpY3RlZC5yLWxpYi5vcmcvXHUwMDA3Y29uZmxpY3RlZCBwYWNrYWdlXHUwMDFiXTg7O1x1MDAwNyB0byBmb3JjZSBhbGwgY29uZmxpY3RzIHRvIGJlY29tZSBlcnJvcnNcbiJ9 -->
+<pre><code>── Attaching core tidyverse packages ───────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     ── Conflicts ─────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ lubridate::%within%() masks IRanges::%within%()
+✖ dplyr::collapse()     masks IRanges::collapse()
+✖ dplyr::combine()      masks BiocGenerics::combine()
+✖ dplyr::desc()         masks IRanges::desc()
+✖ tidyr::expand()       masks S4Vectors::expand()
+✖ dplyr::filter()       masks stats::filter()
+✖ dplyr::first()        masks S4Vectors::first()
+✖ dplyr::lag()          masks stats::lag()
+✖ ggplot2::Position()   masks BiocGenerics::Position(), base::Position()
+✖ purrr::reduce()       masks GenomicRanges::reduce(), IRanges::reduce()
+✖ dplyr::rename()       masks S4Vectors::rename()
+✖ lubridate::second()   masks S4Vectors::second()
+✖ lubridate::second&lt;-() masks S4Vectors::second&lt;-()
+✖ dplyr::slice()        masks IRanges::slice()
+ℹ Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShHdml6KVxubGlicmFyeShiaW9tYVJ0KVxubGlicmFyeShnbHVlKVxuYGBgIn0= -->
+<pre class="r"><code>library(Gviz)
 library(biomaRt)
-library(glue)
-library(ggtranscript)
-library(&#39;GenomicFeatures&#39;)
-library(&#39;rtracklayer&#39;)
-library(devtools)
-library(svglite)
+library(glue)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTogJ2dsdWUnXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tICdwYWNrYWdlOkdlbm9taWNSYW5nZXMnOlxuXG4gICAgdHJpbVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSAncGFja2FnZTpJUmFuZ2VzJzpcblxuICAgIHRyaW1cbiJ9 -->
+<pre><code>
+Attaching package: &#39;glue&#39;
+
+The following object is masked from &#39;package:GenomicRanges&#39;:
+
+    trim
+
+The following object is masked from &#39;package:IRanges&#39;:
+
+    trim</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnZ3RyYW5zY3JpcHQpXG5saWJyYXJ5KCdHZW5vbWljRmVhdHVyZXMnKVxuYGBgIn0= -->
+<pre class="r"><code>library(ggtranscript)
+library(&#39;GenomicFeatures&#39;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBBbm5vdGF0aW9uRGJpXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IEJpb2Jhc2VcbldlbGNvbWUgdG8gQmlvY29uZHVjdG9yXG5cbiAgICBWaWduZXR0ZXMgY29udGFpbiBpbnRyb2R1Y3RvcnkgbWF0ZXJpYWw7IHZpZXcgd2l0aCAnYnJvd3NlVmlnbmV0dGVzKCknLiBUbyBjaXRlIEJpb2NvbmR1Y3Rvciwgc2VlXG4gICAgJ2NpdGF0aW9uKFwiQmlvYmFzZVwiKScsIGFuZCBmb3IgcGFja2FnZXMgJ2NpdGF0aW9uKFwicGtnbmFtZVwiKScuXG5cblxuQXR0YWNoaW5nIHBhY2thZ2U6ICdBbm5vdGF0aW9uRGJpJ1xuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSAncGFja2FnZTpkcGx5cic6XG5cbiAgICBzZWxlY3RcbiJ9 -->
+<pre><code>Loading required package: AnnotationDbi
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with &#39;browseVignettes()&#39;. To cite Bioconductor, see
+    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.
+
+
+Attaching package: &#39;AnnotationDbi&#39;
+
+The following object is masked from &#39;package:dplyr&#39;:
+
+    select</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSgncnRyYWNrbGF5ZXInKVxubGlicmFyeShkZXZ0b29scylcbmBgYCJ9 -->
+<pre class="r"><code>library(&#39;rtracklayer&#39;)
+library(devtools)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiB1c2V0aGlzXG4ifQ== -->
+<pre><code>Loading required package: usethis</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShzdmdsaXRlKVxuXG4jIExvYWQgZnVuY3Rpb25zIGZyb20gdXRpbHNcbnNvdXJjZShcIi4uL3NjcmlwdHMvdXRpbHMuUlwiKSBcbmBgYCJ9 -->
+<pre class="r"><code>library(svglite)
 
 # Load functions from utils
 source(&quot;../scripts/utils.R&quot;) </code></pre>
@@ -1842,6 +1903,10 @@ out_path = paste(&#39;../data/proteomics/isoquant/&#39;, gene, &#39;.gtf&#39;, s
 # Add UTR to the gtf file
 combined_cds_utr_gtffile(gene, isoquant_gtf, out_path)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogVGhlIHBoYXNlIGluZm9ybWF0aW9uIGlzIG1pc3NpbmcgZm9yIHNvbWUgQ0RTLiBUaGUgd3JpdHRlbiBmaWxlIHdpbGwgY29udGFpbiBzb21lIENEUyB3aXRoIG5vIHBoYXNlXG4gIGluZm9ybWF0aW9uLlxuIn0= -->
+<pre><code>Warning: The phase information is missing for some CDS. The written file will contain some CDS with no phase
+  information.</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>

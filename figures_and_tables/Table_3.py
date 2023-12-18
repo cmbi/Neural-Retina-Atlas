@@ -1,11 +1,11 @@
 # Import
 import pandas as pd
 import sys
-sys.path.insert(1, 'scripts/')
+sys.path.insert(1, '../scripts/')
 import utils
 
 # Load the isoquant transcripts
-isoquant = pd.read_csv('../data/transcriptomics/isoquant_classification.tsv', sep = '\t')
+isoquant = pd.read_csv('../data/transcriptomics/isoquant/isoquant_classification.tsv', sep = '\t')
 
 # Filter the isoforms for IRD genes
 ird_genes = utils.ird_gene_list()

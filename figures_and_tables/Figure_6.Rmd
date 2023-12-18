@@ -37,11 +37,11 @@ library(tidyr)
 # Import the gtf 
 ```{r}
 # Import the Isoquant gtf
-gtf <- rtracklayer::import("../data/transcriptomics/isoquant_aln.sorted.transcript_models.gtf")
+gtf <- rtracklayer::import("../data/transcriptomics/isoquant/isoquant_aln.sorted.transcript_models.gtf")
 gtf <- gtf %>% dplyr::as_tibble()
 
 # Import the CPAT gtf (only novel ORFs)
-gtf_cds <- rtracklayer::import("../data/proteomics/hnr_50_with_cds_filtered.gtf")
+gtf_cds <- rtracklayer::import("../data/proteomics/isoquant/hnr_50_with_cds_filtered.gtf")
 gtf_cds <- gtf_cds %>% dplyr::as_tibble()
 ```
 
@@ -85,7 +85,7 @@ goi_annotation_from_gtf <- goi_annotation_from_gtf %>%
 # Read gencode gtf
 ```{r}
 # Import the CPAT gtf (only novel ORFs)
-gencode_path <- paste('../data/transcriptomics/', gene_of_interest, '_gencode.gtf', sep='')
+gencode_path <- paste('../data/ref_genome/', gene_of_interest, '_gencode.gtf', sep='')
 gencode <- rtracklayer::import(gencode_path)
 gencode <- gencode %>% dplyr::as_tibble()
 
@@ -322,7 +322,7 @@ if (gene_of_interest == 'IMPDH1'){
 
 # Add TPM column to the dataframe
 ```{r}
-counts <- read.table("../data/transcriptomics/00_aln.sorted.transcript_model_grouped_tpm.tsv",header = FALSE, sep = "\t")
+counts <- read.table("../data/transcriptomics/isoquant/isoquant_aln.sorted.transcript_model_grouped_tpm.tsv",header = FALSE, sep = "\t")
 colnames(counts) <- c("transcript", "sample1", "sample2", "sample3") 
 # convert transcript name to upper
 counts <- counts %>%
