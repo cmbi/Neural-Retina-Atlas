@@ -1,7 +1,8 @@
 
 ## Required data
 - Raw data is available at EGA with accesion EGAD50000000101
-- Intermediate files can be downloaded from Zenodo: 
+- Intermediate files can be downloaded from Zenodo: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10371395.svg)](https://doi.org/10.5281/zenodo.10371395)
+- Reference files can be downloaded from Zenodo: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10371435.svg)](https://doi.org/10.5281/zenodo.10371435)
 - Publicly available short-read RNA-sequencing data included in the SQANTI3 and TALON analysis can be downloaded from  EBI's ArrayExpress (E-MTAB-4377).
 
 ## Iso-Seq analysis with IsoQuant
