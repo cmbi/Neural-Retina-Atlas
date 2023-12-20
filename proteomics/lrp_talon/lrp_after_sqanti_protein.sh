@@ -1,17 +1,11 @@
 #!/bin/bash
-#$ -cwd
-#$ -o lrp_2.out
-#$ -e lrp_2.err
-#$ -V
-#$ -pe smp 1
-#$ -q all.q@narrativum.umcn.nl,all.q@noggo.umcn.nl
 
 source /mnt/home2/tabear/anaconda3/etc/profile.d/conda.sh
 
-out_folder=/mnt/xomics/tabear/atlas_paper/proteome/lrp_talon
-script_folder=/mnt/xomics/tabear/atlas_paper/proteome/modules_talon
-talon_classification_fl=/mnt/xomics/tabear/atlas_paper/transcriptome/talon/venice_talon_abundance_filtered_fl.tsv
-gencode=/mnt/xomics/tabear/ref_genome/GRCh38/pacbio/gencode.v39.primary_assembly.annotation.gtf
+out_folder=../../data/proteomics/talon
+script_folder=/proteomics/lrp_talon
+talon_classification_fl=../../data/transcriptomics/talon/venice_talon_abundance_filtered_fl.tsv
+gencode=../../data/ref_genome/gencode.v39.primary_assembly.annotation.gtf
 name=hnr_50
 
 conda activate lrp

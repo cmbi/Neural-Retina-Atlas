@@ -1,11 +1,9 @@
 #!/bin/bash
 
-source /mnt/home2/tabear/anaconda3/etc/profile.d/conda.sh
-
-out_folder=/mnt/xomics/tabear/atlas_paper/proteome/lrp_isoquant
-script_folder=/mnt/xomics/tabear/atlas_paper/proteome/modules_isoquant
-gencode=/mnt/xomics/tabear/ref_genome/GRCh38/pacbio/gencode.v39.primary_assembly.annotation.gtf
-database_fasta=/mnt/xomics/tabear/atlas_paper/proteome/lrp_isoquant/15_hybrid_database/hnr_50_hybrid.fasta
+out_folder=../../data/protoemics/isoquant
+script_folder=proteomeomics/lrp_isoquant/
+gencode=../../data/ref_genome/gencode.v39.primary_assembly.annotation.gtf
+database_fasta=proteomeomics/results_isoquant/15_hybrid_database/hnr_50_hybrid.fasta
 name=hnr_50
 
 conda activate lrp

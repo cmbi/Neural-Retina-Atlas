@@ -1,17 +1,9 @@
 #!/bin/bash
-#$ -cwd
-#$ -o lrp_1.out
-#$ -e lrp_1.err
-#$ -V
-#$ -pe smp 10
-#$ -q all.q@narrativum.umcn.nl,all.q@noggo.umcn.nl
 
-source /mnt/home2/tabear/anaconda3/etc/profile.d/conda.sh
-
-out_folder=/mnt/xomics/tabear/atlas_paper/proteome/lrp_talon
-script_folder=/mnt/xomics/tabear/atlas_paper/proteome/modules_isoquant
-gencode=/mnt/xomics/tabear/ref_genome/GRCh38/pacbio/gencode.v39.primary_assembly.annotation.gtf
-database_fasta=/mnt/xomics/tabear/atlas_paper/proteome/lrp_talon/15_hybrid_database/hnr_50_hybrid.fasta
+out_folder=../../data/proteomics/talon
+script_folder=proteomics/lrp_talon
+gencode=../../data/ref_genome/gencode.v39.primary_assembly.annotation.gtf
+database_fasta=../../data/results_talon/15_hybrid_database/hnr_50_hybrid.fasta
 name=hnr_50
 
 # Define enzyme types

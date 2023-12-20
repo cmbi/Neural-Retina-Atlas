@@ -1,9 +1,7 @@
 #!/bin/bash
 
-source /mnt/home2/tabear/anaconda3/etc/profile.d/conda.sh
-
-out_folder=../../data/isoquant
-script_folder=scripts
+out_folder=../../data/proteomics/isoquant
+script_folder=proteomics/lrp_isoquant
 isoquant_gtf=../../data/transcriptomics/isoquant/00_aln.sorted/00_aln.sorted.transcript_models
 isoquant_counts=../../data/transcriptomics/isoquant/00_aln.sorted.transcript_model_counts.tsv
 classification=../../data/transcriptomics/isoquant/isoquant_transcript.SQANTI-like.tsv
