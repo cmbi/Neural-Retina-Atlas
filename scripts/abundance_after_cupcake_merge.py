@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import requests, sys
 
-# This scripts combines the individual FL counts of sample 1, sample2, and sample 3 after cupcake merge
+# This script combines the individual FL counts of sample 1, sample2, and sample 3 after cupcake merge
 
 # Take the input and output file from the command line
 if len(sys.argv) != 3:
