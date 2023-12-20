@@ -22,3 +22,10 @@ This script is used to add a gene name column to the IsoQuant output based on th
 This script contains the `combined_cds_utr_gtffile` function that is used to create the IsoQuant track in Figure 5. 
 
 #### [Utils (Python)](utils.py)
+This script contains the following Python functions:
+* `ird_gene_list` reads the RetNet genes and stores them in a list
+* `replace_geneid_by_symbol` replaces a gene ID by the gene symbol
+* `replace_geneid_by_symbol` replaces the gene ID by the gene symbol for a pandas dataframe
+* `overlap3` creates a Venn diagram for a dataset with three different samples
+* `digest` digests a protein sequence with the specified enzyme
+* `refine_source` defines if a peptide is multi-mapping or not
