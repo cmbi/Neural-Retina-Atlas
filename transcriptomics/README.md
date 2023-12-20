@@ -1,6 +1,6 @@
 
 ## Required data
-- Raw data is available at EGA with accesion X
+- Raw data is available at EGA with accesion EGAD50000000101
 - Intermediate files can be downloaded from Zenodo: 
 - Publicly available short-read RNA-sequencing data included in the SQANTI3 and TALON analysis can be downloaded from  EBI's ArrayExpress (E-MTAB-4377).
 
