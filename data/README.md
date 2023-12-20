@@ -21,4 +21,7 @@
 - `gene.gtf` files are used to create Figure 4
 - `primers.fasta` is used for PacBio long-read RNA-sequencing analysis
 
-### Additional bigger data files are available at: link
+### Additional bigger data files are available at:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10371435.svg)](https://doi.org/10.5281/zenodo.10371435)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10371395.svg)](https://doi.org/10.5281/zenodo.10371395)
+
