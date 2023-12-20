@@ -1,8 +1,6 @@
 #!/bin/bash
 
-source /mnt/home2/tabear/anaconda3/etc/profile.d/conda.sh
-
-folder=../../../data/transcriptome/sqanti/sample1
+folder=../../data/transcriptome/sqanti/sample1
 
 conda activate isoseq
 
@@ -35,13 +33,13 @@ gzip -d ${folder}/polished.hq.fasta.gz
 conda activate cupcake28
 
 # 6.Cupcake
-python3 ../../../tools/cDNA_Cupcake/cupcake/tofu/collapse_isoforms_by_sam.py \
+python3 ../../tools/cDNA_Cupcake/cupcake/tofu/collapse_isoforms_by_sam.py \
 --input ${folder}/polished.hq.fasta \
 -s ${folder}/aln.sorted.sam \
 -o ${folder}/isoforms \
 --dun-merge-5-shorter
 
-python3 ../../../tools/cDNA_Cupcake/cupcake/tofu/get_abundance_post_collapse.py \
+python3 ../../tools/cDNA_Cupcake/cupcake/tofu/get_abundance_post_collapse.py \
 ${folder}/isoforms.collapsed \
 ${folder}/polished.cluster_report.csv
 

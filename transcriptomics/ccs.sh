@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source /mnt/home2/tabear/anaconda3/etc/profile.d/conda.sh
-
 name="sample1"
 folder=../data/transcriptomics/isoquant/${name}
 
