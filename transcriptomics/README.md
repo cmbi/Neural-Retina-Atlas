@@ -30,9 +30,9 @@
 | SQANTI3 | 5.1 | https://github.com/ConesaLab/SQANTI3 |
 
 ### Scripts
-Start with 'flnc.bam' from the IsoQuant analysis
+Start with `flnc.bam` from the IsoQuant analysis
 1. [Isoseq](sqanti/isoseq.sh) - Cluster the isoforms, align them to the reference genome, and run cDNA Cupcake filtering
-2. [Chain samples](sqanti/cupcake_chain_samples.sh) - 
+2. [Chain samples and run SQANTI3](sqanti/cupcake_chain_samples.sh) - Combine the three individual samples with cDNA Cupcake merge, add a FL column to the output and run SQANTI3 quality control and rulesfilter
 
 
 ## Iso-Seq analysis with TALON
@@ -43,6 +43,8 @@ Start with 'flnc.bam' from the IsoQuant analysis
 | TranscriptClean | 2.0.3 | https://github.com/mortazavilab/TranscriptClean |
 | TALON | 5.0 | https://github.com/mortazavilab/TALON |
 
-### Acripts
-Start with flnc.bam from the Isoquant analysis
+### Scripts
+Start with `flnc.bam` from the Isoquant analysis
+1. [Isoseq](talon/isoseq.sh) - align the reads with Minimap2 with -MD flag, run TranscriptClean, and label reads for internal priming
+2. [TALON](talon.sh) - Run TALON and filter for reads in at least one sample and at least two counts.
 
