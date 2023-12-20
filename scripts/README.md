@@ -19,6 +19,6 @@ This script converts the IsoQuant output into a SQANTI3-like classification file
 This script is used to add a gene name column to the IsoQuant output based on the gene id column.
 
 #### [Utils (R)](utils.R)
-This script contains the `` function that is used to create the IsoQuant track in Figure 5. 
+This script contains the `combined_cds_utr_gtffile` function that is used to create the IsoQuant track in Figure 5. 
 
 #### [Utils (Python)](utils.py)
