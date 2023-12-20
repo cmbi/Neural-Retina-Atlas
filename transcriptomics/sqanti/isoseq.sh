@@ -6,7 +6,7 @@ conda activate isoseq
 
 # Cluster
 isoseq3 cluster \
-../../../data/transcriptome/isoquant/sample1/flnc.bam \
+../../data/transcriptome/isoquant/sample1/flnc.bam \
 ${folder}/polished.bam \
 --verbose \
 --use-qvs \
@@ -16,7 +16,7 @@ ${folder}/polished.bam \
 minimap2 \
 -t 20 \
 -ax splice -uf --secondary=no -C5 -O6,24 -B4 \
-../../../data/ref_genome/hg38.fa \
+../../data/ref_genome/hg38.fa \
 ${folder}/polished.hq.fasta.gz > reads.sam
 
 conda deactivate
@@ -46,7 +46,7 @@ ${folder}/polished.cluster_report.csv
 conda deactivate
 
 # Create a fastq file for cupcake merge
-../../../tools/bbmap/reformat.sh \
+../../tools/bbmap/reformat.sh \
 in=${folder}/isoforms.collapsed.rep.fa \
 out=${folder}/isoforms.collapsed.rep.fastq
 
