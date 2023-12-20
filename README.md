@@ -5,7 +5,7 @@ This repository contains the scripts used for the paper 'A proteogenomic atlas o
 ## Data
 Raw PacBio Iso-Seq data are available at the  European Genome-phenome Archive (EGA) under accession number EGAD50000000101. The mass-spectromety proteomics data have been deposited to the ProteomeXchange Consortium via the PRIDE​​ partner repository with the dataset identifier PXD045187. Intermediate files generated during the analysis can be downloaded from Zenodo (link)
 
-The processed data is available as UCSC genome browser track (link).
+The processed data is available as UCSC genome browser track (https://genome-euro.ucsc.edu/s/tabeariepe/retina_atlas).
 
 ## Scripts
 
