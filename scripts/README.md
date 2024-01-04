@@ -10,7 +10,7 @@ This script is used to color the transcript and ORF isoforms according to their 
 This script contains the information on how `add_color_to_gtf.py` was used to create the visualisatiions for the UCSC genome browser.
 
 #### [NCBI human protein coding genes](genes_ncbi_human_proteincoding.py) and [NCBI gene results to Python](ncbi_gene_results_to_python.py)
-These scripts are used to perform the Gene Ontology enrichment analysis in Figure 2D. 
+These scripts are used to perform the Gene Ontology enrichment analysis in Figure 1D. 
 
 #### [IsoQuant to SQANTI3 converter](isoquant_sqanti_converter.py)
 This script converts the IsoQuant output into a SQANTI3-like classification file that is required for the long-read proteogenomics pipeline by Miller et al.
@@ -19,7 +19,7 @@ This script converts the IsoQuant output into a SQANTI3-like classification file
 This script is used to add a gene name column to the IsoQuant output based on the gene id column.
 
 #### [Utils (R)](utils.R)
-This script contains the `combined_cds_utr_gtffile` function that is used to create the IsoQuant track in Figure 5. 
+This script contains the `combined_cds_utr_gtffile` function that is used to create the IsoQuant track in Figure 4. 
 
 #### [Utils (Python)](utils.py)
 This script contains the following Python functions:
