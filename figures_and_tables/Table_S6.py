@@ -1,7 +1,7 @@
 # Import
 import pandas as pd
 
-# Load the file with transcript and ORD classification
+# Load the file with transcript and ORF classification
 sqanti_protein = pd.read_csv('../data/proteomics/isoquant/hnr_50.classification_filtered.tsv', sep = '\t')
 
 # Extract the transcript classification from the transcript name
