@@ -5,7 +5,7 @@ output: html_notebook
 ---
 # Define the gene of interest
 ```{r}
-gene_of_interest <- "CRB1" # CRB1, SLC24A1, IMPDH1
+gene_of_interest <- "IMPDH1" # SAMD11, SLC24A1, IMPDH1
 ```
 
 
@@ -124,55 +124,51 @@ gencode %>% head()
 # Load ONT ORFs
 ```{r}
 
-if (gene_of_interest != 'CRB1') {
- 
-  ont_cds <- rtracklayer::import("../data/transcriptomics/ont.gtf")
-  ont_cds <- ont_cds %>% dplyr::as_tibble()
-  
-  # extract the required annotation columns
-  ont_cds <- ont_cds %>% 
-    dplyr::select(
-      seqnames,
-      start,
-      end,
-      strand,
-      type,
-      gene_id,
-      transcript_id)
-  
-  #ont_cds <- ont_cds %>% 
-  # rename(transcript = transcript_id)
-  colnames(ont_cds)[7] <- 'transcript'
-  
-  ont_cds$orf_class <- 'ONT'
-  ont_cds$transcript_class <- 'ONT'
-  
-  ont_cds$transcript_type <- 'protein_coding'
-  
-  # Filter for gene of interest
-  switch(gene_of_interest,
-         "SLC24A1" = {
-           ont_cds <- ont_cds[ont_cds$gene_id %in% c('TCONS_00000580_ORF_1'), ]
-         },
-         "IMPDH1" = {
-           ont_cds <- ont_cds[ont_cds$gene_id %in% c('TCONS_00001301_ORF_1'), ]
-         }
-  )
-  
-  ont_cds %>% head()
-  
-}
+ont_cds <- rtracklayer::import("../data/transcriptomics/ont.gtf")
+ont_cds <- ont_cds %>% dplyr::as_tibble()
+
+# extract the required annotation columns
+ont_cds <- ont_cds %>% 
+  dplyr::select(
+    seqnames,
+    start,
+    end,
+    strand,
+    type,
+    gene_id,
+    transcript_id)
+
+#ont_cds <- ont_cds %>% 
+# rename(transcript = transcript_id)
+colnames(ont_cds)[7] <- 'transcript'
+
+ont_cds$orf_class <- 'ONT'
+ont_cds$transcript_class <- 'ONT'
+
+ont_cds$transcript_type <- 'protein_coding'
+
+# Filter for gene of interest
+switch(gene_of_interest,
+       "SLC24A1" = {
+         ont_cds <- ont_cds[ont_cds$gene_id %in% c('TCONS_00000580_ORF_1'), ]
+       },
+       "IMPDH1" = {
+         ont_cds <- ont_cds[ont_cds$gene_id %in% c('TCONS_00001301_ORF_1'), ]
+       },
+       "SAMD11" = {
+         ont_cds <- ont_cds[ont_cds$gene_id %in% c('TCONS_00000247_ORF_1','TCONS_00000200_ORF_1','TCONS_00000246_ORF_1','TCONS_00000205_ORF_1'),]
+       }
+)
+
+ont_cds %>% head()
+
 
 ```
  
 # Combine the GENCODE, PacBio and ONT transcripts
 ```{r}
 
-if (gene_of_interest != 'CRB1') {
-  combined <- rbind(gencode,goi_annotation_from_gtf, ont_cds)
-} else {
-  combined <- rbind(gencode,goi_annotation_from_gtf)
-}
+combined <- rbind(gencode,goi_annotation_from_gtf, ont_cds)
 
 goi_combined <- combined  %>% 
   dplyr::filter(
@@ -312,9 +308,10 @@ transcript_plot <- transcript_plot + scale_fill_manual(values = c("#07004D", "#E
 theme_set(formatting)
 
 #Inverse the direction of IMPDH1
-if (gene_of_interest == 'IMPDH1'){
-  transcript_plot <- transcript_plot + coord_cartesian(xlim = c(5000, 0))  
-}
+if (gene_of_interest == 'IMPDH1') {
+  transcript_plot <- transcript_plot + coord_cartesian(xlim = c(5000, 0))
+} 
+
 
 
 ```
@@ -370,12 +367,12 @@ plot <- ggarrange(transcript_plot,
          axis.title.x = element_blank()),
          ncol = 2, nrow = 1, widths = c(1, 0.2))
 
-if (gene_of_interest == 'CRB1'){
-  h = 2.75
+if (gene_of_interest == 'SAMD11'){
+  h = 3.75
 } else if (gene_of_interest == 'SLC24A1'){
-  h = 2.5
+  h = 2
 } else if (gene_of_interest == 'IMPDH1'){
-  h = 4.25
+  h = 3.75
 }
 
 # Save the plot
