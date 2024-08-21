@@ -1,6 +1,6 @@
 ##gff-version 2
 ##source-version rtracklayer 1.58.0
-##date 2023-12-18
+##date 2024-08-20
 chr6	.	UTR	130837375	130840598	.	-	.	transcript_id "TRANSCRIPT22463.CHR6.NNIC";
 chr6	.	UTR	130858131	130858138	.	-	.	transcript_id "TRANSCRIPT22463.CHR6.NNIC";
 chr6	hg38_canon	CDS	130858139	130858243	.	-	.	transcript_id "TRANSCRIPT22463.CHR6.NNIC"; gene_id "EPB41L2"

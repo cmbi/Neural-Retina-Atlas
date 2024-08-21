@@ -1,7 +1,7 @@
 import pandas as pd
 
-transcript_bed = '../../data/transcriptomics/nanopore/ont.bed'
-orf_bed = '../../data/transcriptomics/nanopore/ont_cds.bed'
+transcript_bed = '../../data/transcriptomics/nanopore/ont.combined.bed'
+orf_bed = '../../data/transcriptomics/nanopore/ont_cds.combined.bed'
 
 transcripts=pd.read_table(transcript_bed, names = ['chrom', 'chromStart', 'chromEnd', 'name', 'score', 'strand', 'thickStart', 'thickEnd', 'itemRgb', 'blockCount', 'blockSizes', 'blockStarts'])
 orfs=pd.read_table(orf_bed, header=0, names = ['chrom', 'chromStart', 'chromEnd', 'name', 'score', 'strand', 'thickStart', 'thickEnd', 'itemRgb', 'blockCount', 'blockSizes', 'blockStarts'])

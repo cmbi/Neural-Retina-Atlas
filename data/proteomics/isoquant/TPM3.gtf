@@ -1,6 +1,6 @@
 ##gff-version 2
 ##source-version rtracklayer 1.58.0
-##date 2023-12-08
+##date 2024-08-20
 chr1	.	UTR	154156357	154159048	.	-	.	transcript_id "TRANSCRIPT38132.CHR1.NNIC";
 chr1	.	UTR	154169305	154169383	.	-	.	transcript_id "TRANSCRIPT38132.CHR1.NNIC";
 chr1	.	UTR	154170400	154170469	.	-	.	transcript_id "TRANSCRIPT38132.CHR1.NNIC";

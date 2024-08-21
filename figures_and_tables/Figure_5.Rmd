@@ -5,7 +5,7 @@ output: html_notebook
 ---
 # Define the gene of interest
 ```{r}
-gene_of_interest <- "IMPDH1" # SAMD11, SLC24A1, IMPDH1
+gene_of_interest <- "SLC24A1" # SAMD11, SLC24A1, IMPDH1
 ```
 
 
@@ -124,7 +124,7 @@ gencode %>% head()
 # Load ONT ORFs
 ```{r}
 
-ont_cds <- rtracklayer::import("../data/transcriptomics/ont.gtf")
+ont_cds <- rtracklayer::import("../data/transcriptomics/nanopore/ont.gtf")
 ont_cds <- ont_cds %>% dplyr::as_tibble()
 
 # extract the required annotation columns
@@ -150,13 +150,13 @@ ont_cds$transcript_type <- 'protein_coding'
 # Filter for gene of interest
 switch(gene_of_interest,
        "SLC24A1" = {
-         ont_cds <- ont_cds[ont_cds$gene_id %in% c('TCONS_00000580_ORF_1'), ]
+         ont_cds <- ont_cds[ont_cds$gene_id %in% c('TRANSCRIPT24.CHR15.NIC_ORF_1'), ]
        },
        "IMPDH1" = {
-         ont_cds <- ont_cds[ont_cds$gene_id %in% c('TCONS_00001301_ORF_1'), ]
+         ont_cds <- ont_cds[ont_cds$gene_id %in% c('TRANSCRIPT115.CHR7.NNIC_ORF_1'), ]
        },
        "SAMD11" = {
-         ont_cds <- ont_cds[ont_cds$gene_id %in% c('TCONS_00000247_ORF_1','TCONS_00000200_ORF_1','TCONS_00000246_ORF_1','TCONS_00000205_ORF_1'),]
+         ont_cds <- ont_cds[ont_cds$gene_id %in% c('TRANSCRIPT79.CHR1.NNIC_ORF_1','TRANSCRIPT30.CHR1.NNIC_ORF_1'),]
        }
 )
 
@@ -270,7 +270,7 @@ goi_cds_utr_rescaled <-
 
 # Add a transcript class column for the coloring and legend
 goi_cds_utr_rescaled$transcript_class[goi_cds_utr_rescaled$type == 'UTR' & grepl('TRANSCRIPT', goi_cds_utr_rescaled$transcript) == TRUE] <- 'NIC'
-goi_cds_utr_rescaled$transcript_class[goi_cds_utr_rescaled$type == 'UTR' & grepl('MSTRG', goi_cds_utr_rescaled$transcript) == TRUE] <- 'ONT'
+goi_cds_utr_rescaled$transcript_class[goi_cds_utr_rescaled$type == 'UTR' & grepl('ORF', goi_cds_utr_rescaled$transcript) == TRUE] <- 'ONT'
 goi_cds_utr_rescaled$transcript_class[goi_cds_utr_rescaled$type == 'UTR' & grepl('ENST', goi_cds_utr_rescaled$transcript) == TRUE] <- 'GENCODE'
 ```
 
@@ -342,7 +342,7 @@ cpm <- cpm %>%
 cpm$transcript_class <- rep(NA, nrow(cpm))
 cpm$transcript_class[grepl('NIC', cpm$transcript) == TRUE] <- 'NIC'
 cpm$transcript_class[grepl('NNIC', cpm$transcript) == TRUE] <- 'NNIC'
-cpm$transcript_class[grepl('TCONS', cpm$transcript) == TRUE] <- 'ONT'
+cpm$transcript_class[grepl('ONT', cpm$transcript) == TRUE] <- 'ONT'
 cpm$transcript_class[grepl('ENST', cpm$transcript) == TRUE] <- 'GENCODE'
 ```
 

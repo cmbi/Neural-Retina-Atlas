@@ -42,21 +42,21 @@ if (gene == 'AMPH') {
   st <- 38426000
   en <- 38430000
   gene_id <- 'ENSG00000078053.17'
-  nanopore_transcripts <- c("TCONS_00001274_ORF_1", "TCONS_00001290_ORF_1" )
+  #nanopore_transcripts <- c("TCONS_00001274_ORF_1", "TCONS_00001290_ORF_1" )
   min_strand <- TRUE
 } else if (gene == 'TPM3'){
   thechr <- "chr1"
   st <- 154150000
   en <- 154170000
   gene_id <- 'ENSG00000143549.21'
-  nanopore_transcripts <- c("TCONS_00000092_ORF_1" )
+  #nanopore_transcripts <- c("TCONS_00000092_ORF_1" )
   min_strand <- TRUE
 } else if (gene == 'EPB41L2'){
   thechr <- "chr6"
   st <- 130867000
   en <- 130875000
   gene_id <- 'ENSG00000079819.19'
-  nanopore_transcripts <- c("TCONS_00001216_ORF_1" )
+  #nanopore_transcripts <- c("TCONS_00001216_ORF_1" )
   min_strand <- TRUE
 }
 
@@ -117,17 +117,38 @@ peptides_gtf <- peptides_gtf[feature(peptides_gtf) %in% c("CDS")]
 ```
 
 # Create a track for the Nanopore data
+
 ```{r}
-nanopore <- GeneRegionTrack("../data/transcriptomics/nanopore/ont_ucsc.gtf", 
+  gtf_cds <- rtracklayer::import("../data/transcriptomics/nanopore/ont.gtf")
+  gtf_cds <- gtf_cds %>% dplyr::as_tibble()
+  
+   # Extract exons
+  exons <- gtf_cds %>% dplyr::filter(type == "exon")
+  
+  # Extract cds
+  cds <- gtf_cds %>% dplyr::filter(type == "CDS")
+  cds_utr <- add_utr(exons, cds, group_var = "transcript_id")
+  
+  combined <- rbind(cds_utr, gtf_cds)
+  head(combined)
+```
+
+
+```{r}
+combined_cds_utr_gtffile_ont("../data/transcriptomics/nanopore/ont.gtf", "../data/transcriptomics/nanopore/ont_r.gtf")
+nanopore <- GeneRegionTrack("../data/transcriptomics/nanopore/ont_r.gtf", 
                              chromosome=thechr, genome = theGeneome,name = 'Nanopore', start=st, end=en,
-                             fill="#567568",background.title = "darkgrey", col="NA", transcriptAnnotation="transcript")
-nanopore <- nanopore[feature(nanopore) %in% c("exon")]
+                             fill="#567568",background.title = "darkgrey", col="NA", transcriptAnnotation="transcript_id")
+nanopore <- nanopore[grep("^TRANSCRIPT", transcript(nanopore))]
+nanopore <- nanopore[feature(nanopore) %in% c("CDS","UTR")]
+
+head(nanopore)
 ```
 
 # Create the plot
 ```{r}
 
-# Define the ideogram and genome axis track of the figure
+# Define the ideogram and genome axis track of the figurenanopore
 gtrack <- GenomeAxisTrack()
 picture_path= paste('plots/novel_peptides_', gene, '_nanopore.svg', sep='')
 
@@ -137,7 +158,7 @@ svglite(filename = picture_path,
    pointsize = 10
    )
 # Filter the Nanopore track for transcripts that contain the novel peptides
-nanopore <- nanopore[transcript(nanopore) %in% nanopore_transcripts]
+# nanopore <- nanopore[transcript(nanopore) %in% nanopore_transcripts]
 
 # Filter additional tracks for EPB41L2
 if (gene == 'EPB41L2') {
@@ -148,9 +169,23 @@ if (gene == 'EPB41L2') {
 
 # Create the plot
 plotTracks(
-  list(gencode, rnaatlasTrack, nanopore, peptides_gtf,gtrack),
-  from = st, to = en, chromosome = thechr, thinBoxFeature="UTR", collapse= FALSE, reverseStrand = min_strand,
-  cex = 1.2,cex.title = 0.9, title.width = 3, rot.title = 0
+  list(
+    gencode,
+    rnaatlasTrack,
+    nanopore,
+    peptides_gtf,
+    gtrack
+  ),
+  from = st,
+  to = en,
+  chromosome = thechr,
+  thinBoxFeature = "UTR",
+  collapse = FALSE,
+  reverseStrand = min_strand,
+  cex = 1.2,
+  cex.title = 0.9,
+  title.width = 3,
+  rot.title = 0
 )
 dev.off()
 ```

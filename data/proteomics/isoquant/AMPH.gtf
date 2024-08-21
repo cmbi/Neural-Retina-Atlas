@@ -1,6 +1,6 @@
 ##gff-version 2
 ##source-version rtracklayer 1.58.0
-##date 2023-12-07
+##date 2024-08-20
 chr7	.	UTR	38383696	38384820	.	-	.	transcript_id "TRANSCRIPT6086.CHR7.NIC";
 chr7	hg38_canon	CDS	38384821	38384925	.	-	.	transcript_id "TRANSCRIPT6086.CHR7.NIC"; gene_id "AMPH"
 chr7	hg38_canon	CDS	38389804	38389905	.	-	.	transcript_id "TRANSCRIPT6086.CHR7.NIC"; gene_id "AMPH"

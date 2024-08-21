@@ -36,3 +36,26 @@ combined_cds_utr_gtffile <- function(gene, gtf_file_path, out_file_path) {
   # Export combined data to GTF file
   export(combined, out_file_path)
 }
+
+combined_cds_utr_gtffile_ont <- function(gtf_file_path, out_file_path) {
+  
+  # Import the CPAT gtf (only novel ORFs)
+  gtf_cds <- rtracklayer::import(gtf_file_path)
+  gtf_cds <- gtf_cds %>% dplyr::as_tibble()
+
+  # Extract exons
+  exons <- gtf_cds %>% dplyr::filter(type == "exon")
+  
+  # Extract cds
+  cds <- gtf_cds %>% dplyr::filter(type == "CDS")
+  cds %>% head()
+  
+  # Add UTR to CDS
+  cds_utr <- add_utr(exons, cds, group_var = "transcript_id")
+  
+  # Combine data frames
+  combined <- rbind(cds_utr, gtf_cds)
+  
+  # Export combined data to GTF file
+  export(combined, out_file_path)
+}
