@@ -51,8 +51,12 @@ python remove_stop_codon_from_orf.py
 The AGAT singularity container can be pulled as descrobed on the [AGAT GitHub](https://github.com/NBISweden/AGAT)
 
 ```
+python ../../proteomics/lrp_isoquant/2a_gtf_uppercase.py \
+--gtf ont.combined.gtf \
+--gtf_out ont.combined_upper.gtf
+
 singularity shell -B `pwd`:/mnt/data/ agat_1.0.0--pl5321hdfd78af_0.sif
-agat_convert_sp_gff2bed.pl -gff /mnt/data/ont.gtf -o /mnt/data/ont.bed
+agat_convert_sp_gff2bed.pl -gff /mnt/data/ont.combined_upper.gtf-o /mnt/data/ont.combined.bed
 ```
 
 ## 6. Convert CPAT output to BED
@@ -60,7 +64,7 @@ The container is available at docker under rlsalz/biopj
 
 ```
 singularity shell -B `pwd`:/mnt/data/ suspect.sif
-python /mnt/data/transcriptomics/nanopore/cpat_to_bed.py /mnt/data/data/transcriptomics/ont.ORF_prob.best.tsv /mnt/data/data/transcriptomics/ont.bed /mnt/data/data/transcriptomics/ont_cds.bed
+python /mnt/data/cpat_to_bed.py /mnt/data/ont_best_orf_without_stop.tsv /mnt/data/ont.combined.bed /mnt/data/ont_cds.combined.bed
 ```
 
 ## 7. Add UTR to BED
