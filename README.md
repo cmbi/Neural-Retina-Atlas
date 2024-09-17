@@ -1,6 +1,6 @@
 # Neural-Retina-Atlas
 
-This repository contains the scripts used for the paper 'A proteogenomic atlas of the human neural retina'(link)
+This repository contains the scripts used for the paper '_A proteogenomic atlas of the human neural retina_' by Riepe et al. (2024).
 
 ## Data
 Raw PacBio Iso-Seq data are available at the  European Genome-phenome Archive (EGA) under accession number EGAD50000000101. The mass-spectromety proteomics data have been deposited to the ProteomeXchange Consortium via the PRIDE​​ partner repository with the dataset identifier PXD045187. Intermediate files generated during the analysis and reference files can be downloaded from Zenodo:
